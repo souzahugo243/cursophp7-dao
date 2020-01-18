@@ -38,6 +38,41 @@
 
        }
 
+       public static function getList(){
+           
+         $sql = new SQL();
+           
+         return $sql->select("SELECT * from SERIE order by id_serie");
+       
+        }
+
+       public static function search($parametro){
+           $SQL = new SQL();
+
+           return $SQL->select("SELECT * FROM SERIE WHERE DESCRICAO LIKE :DESC ORDER BY ID_SERIE",
+                               array(
+                                   ":DESC"=>"%".$parametro."%"
+                               ));
+       }
+
+       public static function logar($username, $password){
+           $SQL = new SQL();
+           
+
+        $verificaAcesso =  $SQL->select("SELECT 1 FROM USUARIO WHERE USERNAME = :USERNAME AND PASSWORD = :PASSWORD",
+                        array(
+                          ":USERNAME"=>$username,
+                          ":PASSWORD"=>$password
+                        ));
+
+         if (Count($verificaAcesso) >= 1){
+            $MSG = 'Existe Usuario Cadastrado';
+         }else{
+            $MSG = 'Não Existe Usuario Cadastrado, nao pode contiuar.';
+         }                                
+        return $MSG;                           
+       }
+
        public function __toString()
        {
            return json_encode(array(
