@@ -46,7 +46,8 @@
        
         }
 
-       public static function search($parametro){
+       
+        public static function search($parametro){
            $SQL = new SQL();
 
            return $SQL->select("SELECT * FROM SERIE WHERE DESCRICAO LIKE :DESC ORDER BY ID_SERIE",
@@ -71,6 +72,31 @@
             $MSG = 'Não Existe Usuario Cadastrado, nao pode contiuar.';
          }                                
         return $MSG;                           
+       }
+
+       public static function AlterarInformacoes($value, $parametro){
+           $SQL = new SQL();
+
+           $SQL->select("UPDATE SERIE SET DESCRICAO = :DESCRICAO WHERE ID_SERIE = :ID_SERIE",
+                        array(
+                            ":DESCRICAO"=>$value,
+                            ":ID_SERIE"=>$parametro
+                        ));
+
+          return 'Atualizado';
+       }
+
+       public static function ExcluindoInformacoes($parametro){
+             $SQL = new SQL();
+
+             $SQL->select("DELETE FROM SERIE WHERE ID_SERIE = :ID_SERIE", 
+                        array(
+                            ":ID_SERIE"=>$parametro
+                        ));
+
+           var_dump($parametro);
+            
+           return 'Série Excluida com Sucesso';
        }
 
        public function __toString()

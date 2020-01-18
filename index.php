@@ -1,7 +1,10 @@
 <?php
   require_once("config.php");
   
- echo $exibeUsuario = Usuario::logar("souzahugo243", "souzahugo24");
+  //echo $teste = Usuario::AlterarInformacoes("PRÉ-ESCOLA", 1);
+
+  echo $teste = Usuario::ExcluindoInformacoes(1);
+  
 
   
 ?>

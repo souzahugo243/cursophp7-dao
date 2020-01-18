@@ -31,13 +31,10 @@
          $stmt = $this->conexao->prepare($rawQuery);
 
          $this->setParams($stmt, $params);
-         
-         var_dump($stmt);
-
+           
          $stmt->execute(); 
 
-         return $stmt;
-     
+         return $stmt;     
       }
 
       public function select($rawQuery, $params = array()):array{
